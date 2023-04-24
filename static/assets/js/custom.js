@@ -32,12 +32,32 @@
 	        750:{
 	            items:3
 	        },
+	    }
+	})
+
+	$('.owl-carousel asd').owlCarousel({
+	    loop:true,
+	    margin:30,
+	    nav:true,
+	    autoplay:true,
+		autoplayTimeout:5000,
+		autoplayHoverPause:true,
+	    responsive:{
+	        0:{
+	            items:1
+	        },
+	        550:{
+	            items:2
+	        },
+	        750:{
+	            items:3
+	        },
 	        1000:{
 	            items:4
 	        },
-	        1200:{
+	        1250:{
 	            items:5
-	        }
+	        },
 	    }
 	})
 
