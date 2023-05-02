@@ -50,24 +50,21 @@
         <div class="row">
           <div class="col-md-6 align-self-center">
             <div class="left-content">
-              <h4>{{ data.title_long | safe }}</h4>
-              {{ data.full_desc | safe }}
+              <iframe
+                width="1100"
+                height="600"
+                src="https://www.youtube.com/embed/uLBHPQ9kR00"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
               <div class="main-button">
                 <a rel="nofollow" href="{{lessons[0].url}}" target="_parent"
-                  >Бастау</a
+                  >Келесі сабақ</a
                 >
               </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <article class="video-item">
-              <div class="video-caption">
-                <h4>{{ data.image_alt | safe }}</h4>
-              </div>
-              <figure>
-                <a class="play"><img src="{{ data.image }}" /></a>
-              </figure>
-            </article>
           </div>
         </div>
       </div>
