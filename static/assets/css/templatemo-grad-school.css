@@ -227,7 +227,7 @@ a.menu-link {
 }
 
 .main-menu li.has-submenu a:after {
-  content: "\f107";
+  /* content: "\f107"; */
   font-family: "FontAwesome";
   margin-left: 5px;
 }

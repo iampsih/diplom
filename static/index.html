@@ -13,7 +13,7 @@
       rel="stylesheet"
     />
 
-    <title>Merey School HTML5</title>
+    <title>EduSpace</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
     <!--header-->
     <header class="main-header clearfix" role="header">
       <div class="logo">
-        <a href="#"><em>Merey</em> School</a>
+        <a href="#"><em>Edu</em> Space</a>
       </div>
       <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
       <nav id="menu" class="main-nav" role="navigation">
@@ -37,11 +37,6 @@
           <li><a href="#section1">басы</a></li>
           <li class="has-submenu">
             <a href="#section2">Біз туралы</a>
-            <ul class="sub-menu">
-              <li><a href="#section2">Who we are?</a></li>
-              <li><a href="#section3">What we do?</a></li>
-              <li><a href="#section3">How it works?</a></li>
-            </ul>
           </li>
           <li><a href="#section4">Курстар</a></li>
           <!-- <li><a href="#section5">Video</a></li> -->
@@ -58,7 +53,7 @@
 
       <div class="video-overlay header-text">
         <div class="caption">
-          <h2><em>Merey</em> Classroom</h2>
+          <h2><em>Edu</em> Space</h2>
           <div class="main-button">
             <div class="scroll-to-section">
               <a href="#section2">Discover more</a>
@@ -153,7 +148,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>Why choose Merey School?</h2>
+              <h2>Why choose EduSpace?</h2>
             </div>
           </div>
           <div class="col-md-12">
@@ -342,23 +337,26 @@
             </div>
           </div>
           <div id="myCourses" class="owl-carousel owl-theme">
-            {%for i in range(0, courses|length)%} 
-              <div class="item">
-                <img src="{{ courses[i].image }}" alt="{{ courses[i].title_short }}" />
-                <div class="down-content">
-                  <h4>{{ courses[i].title_short }}</h4>
-                  <p>
-                    {{ courses[i].mini_desc }}
-                  </p>
-                  <!-- <div class="author-image">
+            {%for i in range(0, courses|length)%}
+            <div class="item">
+              <img
+                src="{{ courses[i].image }}"
+                alt="{{ courses[i].title_short }}"
+              />
+              <div class="down-content">
+                <h4>{{ courses[i].title_short }}</h4>
+                <p>{{ courses[i].mini_desc }}</p>
+                <!-- <div class="author-image">
                     <img src="assets/images/author-01.png" alt="Author 1" />
                   </div> -->
-                  <div class="text-button-pay">
-                    <a href="/course/{{ courses[i].id }}">Pay <i class="fa fa-angle-double-right"></i></a>
-                  </div>
+                <div class="text-button-pay">
+                  <a href="/course/{{ courses[i].id }}"
+                    >Pay <i class="fa fa-angle-double-right"></i
+                  ></a>
                 </div>
               </div>
-            {%endfor%} 
+            </div>
+            {%endfor%}
           </div>
         </div>
       </div>
