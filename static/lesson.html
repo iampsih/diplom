@@ -53,14 +53,14 @@
               <iframe
                 width="1100"
                 height="600"
-                src="https://www.youtube.com/embed/uLBHPQ9kR00"
+                src="{{ data.url }}"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen
               ></iframe>
               <div class="main-button">
-                <a rel="nofollow" href="{{lessons[0].url}}" target="_parent"
+                <a rel="nofollow" href="/course/{{ course_id }}/lesson/{{ data.id + 1 }}" target="_parent"
                   >Келесі сабақ</a
                 >
               </div>

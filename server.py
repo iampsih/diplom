@@ -1,86 +1,30 @@
 from flask import Flask, Response, render_template
 import json
-from models import courses
+from models import DB
 
 app = Flask(__name__, static_url_path='', template_folder='static')
 
+db = DB()
+
 @app.route('/')
 def index():
-    return render_template('index.html', courses=courses)
+    c_list = db.get_courses_list()
+    print(c_list)
+    return render_template('index.html', courses=c_list)
 
 @app.route('/course/<int:course_id>')
 def get_course(course_id):
-    resp = courses[course_id - 1]
-    return render_template('courses.html', data=resp, lessons=resp['lessons'])
+    c_data = db.get_course_data(course_id)
+    l_list = db.get_lessons_list(course_id)
+    return render_template('courses.html', data=c_data, lessons=l_list)
 
 @app.route('/course/<int:course_id>/lesson/<int:lesson_id>')
 def get_lesson(course_id, lesson_id):
-    resp = courses[course_id - 1]
-    return render_template('lesson.html', data=resp, lessons=resp['lessons'])
-
-# @app.route('/course/<int:course_id>/lesson/<int:lesson_id>')
-# def get_lessons(course_id, lesson_id):
-#     resp = {
-#         'title': 'Python тiлiнде <em> бағдарламалау негiздерi</em>',
-#         'image': '/assets/images/courses-01.jpg',
-#         'image_alt': 'ПИТОН ТІЛІ',
-#         'full_desc': '''<p>
-#                 Бұл бағдарламалауға кiрiспе курсы ешбiр алғашқы бiлiм мен
-#                 тəжiрибесi жоқ барлық үйренемiн деушiлерге ашық, соның ішінде
-#                 әсіресе жоғарғы сынып оқушылары мен студенттерге арналған.
-#                 Курстың мақсаты тереңдетiлген бiлiмнен гөрi бағдарламалаудың
-#                 негiзгi ұғымдарын үйрену. Практикалық шолу жасау болғандықтан,
-#                 бағдарламалау тiлi ретiнде Python (Питон) таңдалды.
-#               </p>
-#               <h5>Бұл курста не үйренесіз?</h5>
-#               <ul class="lesson-ul">
-#                 <li>
-#                   * Python бағдарламалау тілі туралы іргелі түсінікке ие
-#                   болыңыз.
-#                 </li>
-#                 <li>* Функцияларды программалауды үйрену.</li>
-#                 <li>* Объектіге бағытталған программалау</li>
-#                 <li>
-#                   * Таза, өнімді және қатесіз код жазудың ең жақсы тәжірибелерін
-#                   үйреніңіз.
-#                 </li>
-#               </ul>''',
-#     }
-#     lessons = [
-#         {
-#             'id': 1,
-#             'title': 'Lesson 1',
-#             'desc': 'Бұл бағдарламалауға кiрiспе курсы ешбiр алғашқы бiлiм мен тəжiрибесi жоқ барлық үйренемiн деушiлерге ашық, соның ішінде әсіресе жоғарғы сынып оқушылары мен студенттерге арналған.',
-#             'image': '/assets/images/courses-01.jpg',
-#             'url': f'/course/{course_id}/lesson/1',
-#             'youtube': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-#         },
-#         {
-#             'id': 2,
-#             'title': 'Lesson 2',
-#             'desc': 'Бұл бағдарламалауға кiрiспе курсы ешбiр алғашқы бiлiм мен тəжiрибесi жоқ барлық үйренемiн деушiлерге ашық, соның ішінде әсіресе жоғарғы сынып оқушылары мен студенттерге арналған.',
-#             'image': '/assets/images/courses-02.jpg',
-#             'url': f'/course/{course_id}/lesson/2',
-#             'youtube': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-#         },
-#         {
-#             'id': 3,
-#             'title': 'Lesson 3',
-#             'desc': 'Бұл бағдарламалауға кiрiспе курсы ешбiр алғашқы бiлiм мен тəжiрибесi жоқ барлық үйренемiн деушiлерге ашық, соның ішінде әсіресе жоғарғы сынып оқушылары мен студенттерге арналған.',
-#             'image': '/assets/images/courses-03.jpg',
-#             'url': f'/course/{course_id}/lesson/3',
-#             'youtube': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-#         },
-#         {
-#             'id': 4,
-#             'title': 'Lesson 4',
-#             'desc': 'Бұл бағдарламалауға кiрiспе курсы ешбiр алғашқы бiлiм мен тəжiрибесi жоқ барлық үйренемiн деушiлерге ашық, соның ішінде әсіресе жоғарғы сынып оқушылары мен студенттерге арналған.',
-#             'image': '/assets/images/courses-04.jpg',
-#             'url': f'/course/{course_id}/lesson/4',
-#             'youtube': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-#         }
-#     ]
-#     return render_template('courses.html', data=resp, lessons=lessons)
+    l_list = db.get_lessons_list(course_id)
+    l_data = db.get_lesson_data(course_id, lesson_id)
+    if lesson_id >= len(l_list):
+        l_data['id'] = 0
+    return render_template('lesson.html', course_id=course_id, data=l_data, lessons=l_list)
 
 def dump_json(passed_json):
     return json.dumps(passed_json, indent=4, sort_keys=True, default=str)

@@ -53,7 +53,7 @@
               <h4>{{ data.title_long | safe }}</h4>
               {{ data.full_desc | safe }}
               <div class="main-button">
-                <a rel="nofollow" href="{{lessons[0].url}}" target="_parent"
+                <a rel="nofollow" href="/course/{{ data.id }}/lesson/1" target="_parent"
                   >Бастау</a
                 >
               </div>
@@ -89,7 +89,7 @@
                 <h4>{{ lessons[i].title }}</h4>
                 <p>{{ lessons[i].desc }}</p>
                 <div class="text-button-pay">
-                  <a href="/course/{{ lessons[i].id }}/lesson/1"
+                  <a href="/course/{{ data.id }}/lesson/{{ lessons[i].id }}"
                     >Learn <i class="fa fa-angle-double-right"></i
                   ></a>
                 </div>
