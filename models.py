@@ -3,11 +3,11 @@ import mysql.connector as mysql
 class DB:
     def __init__(self):
         self.db = mysql.connect(
-            host='2-3.h.filess.io',
+            host='db4free.net',
             user='diplom_cavechart',
             password='f4ef91557b471aa8dd4eb32e772a9873b49be455',
             database='diplom_cavechart',
-            port='3307',
+            port='3306',
             # connect_timeout=180,
         )
         self.cursor = self.db.cursor()
